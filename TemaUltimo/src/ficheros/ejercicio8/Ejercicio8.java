@@ -12,28 +12,55 @@ public class Ejercicio8 {
 	private static final String FICHERO = "src\\ficheros\\ejercicio8\\temperaturas.txt";
 
 	public static void main(String[] args) {
+
+		// Opcion del usuario
 		int opc;
+
+		// Linea
 		String linea;
+
+		// Fecha de la toma de la temperatura
 		String fecha;
+
+		// Temperatura minima
 		double tempMin;
+
+		// Temperatura maxima
 		double tempMax;
+
+		// Tmeperatura minima total
 		double tempMinTotal = Double.MAX_VALUE;
+
+		// Temperatura maxima total
 		double tempMaxTotal = Double.MIN_VALUE;
+
+		// Array de datos
 		String[] datos;
+
+		// Abrimos el escaner
 		Scanner sc = new Scanner(System.in);
+
+		// Inicializamos ambos buffereds
 		BufferedWriter bw = null;
 		BufferedReader br = null;
 		try {
+			// Intanciamos el writer
 			bw = new BufferedWriter(new FileWriter(FICHERO, true));
-			
+
 			do {
+
+				// Mostramos el menu
 				menu();
+
+				// Pedimos la opcion
 				opc = sc.nextInt();
 				sc.nextLine();
 
+				// En funcion de la opcion
 				switch (opc) {
 				case 1: // Registrar temperatura
-					
+
+					// Pedimos los datos
 					System.out.println("Introduzca la fecha (aaaa-mm-dd):");
 					fecha = sc.nextLine();
 
@@ -45,12 +72,15 @@ public class Ejercicio8 {
 					tempMax = sc.nextDouble();
 					sc.nextLine();
 
+					// Escribimos los datos
 					bw.write(fecha + "," + tempMax + "," + tempMin);
 					bw.newLine();
 
+					// Limpiamos el cache del buffer
 					bw.flush();
 
 					break;
+
 				case 2: // Mostrar historial
 					br = new BufferedReader(new FileReader(FICHERO));
 					br.readLine();
@@ -84,8 +114,7 @@ public class Ejercicio8 {
 				}
 
 			} while (opc != 3);
-			
-			
+
 		} catch (IOException e) {
 			System.out.println("Error al abrir el fichero");
 			System.out.println(e.getMessage());
@@ -104,6 +133,9 @@ public class Ejercicio8 {
 
 	}
 
+	/**
+	 * Metodo para mostrar el menu
+	 */
 	public static void menu() {
 		System.out.println("1. Registra nueva temperatura.");
 		System.out.println("2. Mostrar historial de registros.");
