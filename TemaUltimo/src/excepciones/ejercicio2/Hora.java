@@ -18,7 +18,7 @@ public class Hora {
 			throw new NegativeHourException();
 		}
 		
-		if (minuto >= 0 && minuto <= 23) {
+		if (minuto >= 0 && minuto <= 60) {
 			this.minuto = minuto;
 		} else {
 			throw new NegtiveMinuteException();
